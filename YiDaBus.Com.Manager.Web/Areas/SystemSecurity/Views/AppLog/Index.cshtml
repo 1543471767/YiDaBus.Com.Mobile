@@ -1,0 +1,216 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    var modulelUrl = "";//区域的路径
+    $(function () {
+        gridList();
+    })
+    var $gridList;
+    function gridList() {
+        $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: modulelUrl + "GetGridJson",
+            height: $(window).height() - 128,
+            colModel: [
+						{ label: "主键", name: "Id", hidden: true, key: true },
+							{ label: '用户ID', name: 'UserId', width: 150, align: 'left' },
+							{ label: '用户账号', name: 'UserName', width: 150, align: 'left' },
+							{ label: '用户姓名', name: 'UserNickName', width: 150, align: 'left' },
+							{ label: '操作类型', name: 'ActionType', width: 150, align: 'left' },
+							{ label: '详细', name: 'Descriptions', width: 150, align: 'left' },
+							{ label: '创建时间', name: 'CreateTime', width: 150, align: 'left' },
+			],
+            pager: "#gridPager",
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "新增",
+            url: modulelUrl + "Form",
+            width: "800px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "修改",
+            url: modulelUrl + "Form?keyValue=" + keyValue,
+            width: "800px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.deleteForm({
+            url: modulelUrl + "DeleteForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_details() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.modalOpen({
+            id: "Details",
+            title: "查看",
+            url: modulelUrl + "Form?action=Details&keyValue=" + keyValue,
+            width: "800px",
+            height: "600px",
+            btn: null,
+        });
+    }
+</script>
+<style>
+    dl {
+        margin: 5px !important;
+    }
+
+    a:hover {
+        color: #ff6a00;
+    }
+
+    #SearchForm table tr {
+    }
+
+        #SearchForm table tr td {
+            padding-right: 10px;
+        }
+</style>
+<div class="topPanel" style="height: 100px;">
+    <div class="search" style="float: inherit;">
+        <form id="SearchForm">
+            <table>
+                <tr>
+                    <!--主键-->
+                    @*<td>
+                        <div class="input-group">
+                            <strong>主键：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="Id" name="Id" type="text" class="form-control" placeholder="主键">
+                        </div>
+                    </td>*@
+                    <!--用户ID-->
+                    @*<td>
+                        <div class="input-group">
+                            <strong>用户ID：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserId" name="UserId" type="text" class="form-control" placeholder="用户ID">
+                        </div>
+                    </td>*@
+                    <!--用户账号-->
+                    <td>
+                        <div class="input-group">
+                            <strong>用户账号：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserName" name="UserName" type="text" class="form-control" placeholder="用户账号">
+                        </div>
+                    </td>
+                    <!--用户姓名-->
+                    @*<td>
+                        <div class="input-group">
+                            <strong>用户姓名：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserNickName" name="UserNickName" type="text" class="form-control" placeholder="用户姓名">
+                        </div>
+                    </td>*@
+                    <!--操作类型-->
+                    <td>
+                        <div class="input-group">
+                            <strong>操作类型：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="ActionType" name="ActionType" type="text" class="form-control" placeholder="操作类型">
+                        </div>
+                    </td>
+                    <!--详细-->
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button id="btn_search" type="button" class="btn  btn-primary" onclick="SearchHandler()"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn  btn-primary" onclick="ShowMoreSearchHandler(this)" style="padding:0px 10px;"><i class="fa fa-expand"></i>更多</button>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <table id="TbMoreSeach" style="display:none;">
+                <tr></tr>
+            </table>
+        </form>
+    </div>
+    <div id="toolbar" style="padding:0px 10px;">
+        <table>
+            <tr>
+                <td>
+                    <a id="NF-edit" class="btn btn-default" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+                </td>
+                <td>
+                    <a id="NF-delete" class="btn btn-default" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+                </td>
+                <td>
+                    <a id="NF-Details" class="btn btn-default" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看</a>
+                </td>
+            </tr>
+        </table>
+        <script>$('#toolbar').authorizeButton()</script>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>

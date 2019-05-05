@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>平台介绍</title>
+    <link href="~/Content/css/framework-font.css" rel="stylesheet" />
+    <link href="~/Content/css/framework-ui.css" rel="stylesheet" />
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
+    <link href="~/Content/js/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/framework-theme.css" rel="stylesheet" />
+    <link href="~/Content/css/framework-about.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                易达巴士平台介绍
+            </div>
+            <div class="panel-body">
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    <script type="text/javascript">
+        $(function () {
+            $(".pay_item").click(function () {
+                $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+                var dataid = $(this).attr('data-id');
+                $(".shang_payimg img").attr("src", "/Content/img/" + dataid + "img.png");
+                $("#shang_pay_txt").text(dataid == "alipay" ? "支付宝" : "微信");
+            });
+        });
+        function dashangToggle() {
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+        }
+    </script>
+</body>
+</html>

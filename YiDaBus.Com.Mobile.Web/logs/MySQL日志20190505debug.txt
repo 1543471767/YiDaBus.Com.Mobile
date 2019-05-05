@@ -1,0 +1,348 @@
+2019-05-05 13:17:33
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area1 	
+Parameters:
+?Area1[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 13:17:33
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area2 	
+Parameters:
+?Area2[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 13:17:45
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area3 	
+Parameters:
+?Area3[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 13:17:46
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area4 	
+Parameters:
+?Area4[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:43
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area1 	
+Parameters:
+?Area1[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:43
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId2) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode3)) 	
+Parameters:
+?F_ItemId2[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode3[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:54
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area4 	
+Parameters:
+?Area4[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:54
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId5) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode6)) 	
+Parameters:
+?F_ItemId5[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode6[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:56
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area7 	
+Parameters:
+?Area7[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:19:56
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId8) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode9)) 	
+Parameters:
+?F_ItemId8[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode9[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:20:09
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId10) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode11)) 	
+Parameters:
+?F_ItemId10[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode11[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:19
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area1 	
+Parameters:
+?Area1[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:20
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId2) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode3)) 	
+Parameters:
+?F_ItemId2[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode3[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:34
+Text:	 SELECT   * FROM `Wx_Users`  WHERE (`Wx_Users`.`OpenId` = ?OpenId4) AND (`Wx_Users`.`IsDel` = ?IsDel5)  limit 0,1	
+Parameters:
+?OpenId4[String] = 0oosadfjjhuyhwjenihkljsareuih
+?IsDel5[Int32] = 0
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:34
+Text:	INSERT INTO `Wx_Users` (`OpenId`,`IsDel`,`UpdateTime`,`CreateTime`,`WxNickName`,`UserName`,`Gender`,`Mobile`,`UserNickName`) VALUES (?OpenId6,?IsDel7,?UpdateTime8,?CreateTime9,?WxNickName10,?UserName11,?Gender12,?Mobile13,?UserNickName14);select last_insert_id();	
+Parameters:
+?OpenId6[String] = 0oosadfjjhuyhwjenihkljsareuih
+?IsDel7[Int32] = 0
+?UpdateTime8[DateTime] = 2019/5/5 20:23:34
+?CreateTime9[DateTime] = 2019/5/5 20:23:34
+?WxNickName10[String] = 开启我亲爱的小耗子
+?UserName11[String] = 15950828997
+?Gender12[String] = 帅哥
+?Mobile13[String] = 15950828997
+?UserNickName14[String] = 吴青峰
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:35
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area15 	
+Parameters:
+?Area15[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:35
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId16) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode17)) 	
+Parameters:
+?F_ItemId16[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode17[String] = FriendlyReminder
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:35
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE ((`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId21) AND (`Sys_ItemsDetail`.`F_ItemCode` = ?F_ItemCode22)) 	
+Parameters:
+?F_ItemId21[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+?F_ItemCode22[String] = IsOpenF56789
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:35
+Text:	 SELECT   * FROM `Orders`  WHERE (((`Orders`.`IsDel` = ?IsDel18) AND (`Orders`.`CarNumber` IN (?CarNumber19,?CarNumber20))) AND (`Orders`.`DepartureTime` = ?DepartureTime23)) 	
+Parameters:
+?IsDel18[Int32] = 0
+?CarNumber19[String] = 苏F36199
+?CarNumber20[String] = 苏F56789
+?DepartureTime23[String] = 2019-05-06
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:38
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId24) 	
+Parameters:
+?F_ItemId24[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:23:38
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId25) 	
+Parameters:
+?F_ItemId25[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:24:10
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId26) 	
+Parameters:
+?F_ItemId26[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:24:11
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId27) 	
+Parameters:
+?F_ItemId27[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:25:14
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId28) 	
+Parameters:
+?F_ItemId28[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:25:15
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId29) 	
+Parameters:
+?F_ItemId29[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:26:44
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId30) 	
+Parameters:
+?F_ItemId30[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:26:45
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId31) 	
+Parameters:
+?F_ItemId31[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:32:30
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId1) 	
+Parameters:
+?F_ItemId1[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:32:31
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId2) 	
+Parameters:
+?F_ItemId2[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:41:39
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId1) 	
+Parameters:
+?F_ItemId1[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:41:40
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId2) 	
+Parameters:
+?F_ItemId2[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:45:14
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId3) 	
+Parameters:
+?F_ItemId3[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:45:14
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId4) 	
+Parameters:
+?F_ItemId4[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:46:53
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId5) 	
+Parameters:
+?F_ItemId5[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:47:02
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId6) 	
+Parameters:
+?F_ItemId6[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:51:32
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId7) 	
+Parameters:
+?F_ItemId7[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:51:39
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId8) 	
+Parameters:
+?F_ItemId8[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:51:58
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId9) 	
+Parameters:
+?F_ItemId9[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:51:58
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId10) 	
+Parameters:
+?F_ItemId10[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:52:16
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId11) 	
+Parameters:
+?F_ItemId11[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:52:20
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId12) 	
+Parameters:
+?F_ItemId12[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:52:22
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId13) 	
+Parameters:
+?F_ItemId13[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:52:26
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId14) 	
+Parameters:
+?F_ItemId14[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:53:05
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId15) 	
+Parameters:
+?F_ItemId15[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:53:13
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId16) 	
+Parameters:
+?F_ItemId16[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:53:47
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId17) 	
+Parameters:
+?F_ItemId17[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------
+2019-05-05 20:53:47
+Text:	 SELECT   * FROM `Sys_ItemsDetail`  WHERE (`Sys_ItemsDetail`.`F_ItemId` = ?F_ItemId18) 	
+Parameters:
+?F_ItemId18[String] = 8e6fffbb-3273-4066-ae5d-aa15502ca7db
+
+
+-----------------------------------------------------------------------------

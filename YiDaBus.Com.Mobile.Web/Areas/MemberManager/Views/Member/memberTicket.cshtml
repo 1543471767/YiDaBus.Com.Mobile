@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "易达快乐巴士 - 我的车票";
+    Layout = "~/Views/Shared/master.cshtml";
+}
+
+@*搜索条可以暂时不用*@
+@*<div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>*@
+<header class="demos-header">
+    <h1 class="demos-title">我的车票</h1>
+</header>
+
+<div class="weui-cells__title">我预订的车票</div>
+<div id="ordersList" class="weui-cells"></div>
+
+@*<div class="weui-loadmore">
+        <i class="weui-loading"></i>
+        <span class="weui-loadmore__tips">正在加载</span>
+    </div>
+    <div class="weui-loadmore weui-loadmore_line">
+        <span class="weui-loadmore__tips">暂无数据</span>
+    </div>*@
+
+
+
+<div class='demos-content-padded'>
+    @*<a href="javascript:void(0);" class="weui-btn weui-btn_primary" id="btnLoadMore">显示更多</a>*@
+    <a href="/Home/" class="weui-btn weui-btn_primary">返回</a>
+</div>
+
+
+@section footContainer{
+    <script id="ordersTemplate" type="text/html">
+        {{# layui.each(d, function(index, item){}}
+        <a class="weui-cell weui-cell_access" href="/MemberManager/Member/MemberTicketDetail?orderId={{ item.Id }}">
+            <div class="weui-cell__bd">
+                <p>
+                    【车辆】{{ item.CarNumber }} | {{ item.FromPosition }}-{{ item.ToPosition }}<br />
+                    【座位】{{ item.SeatTexts }}<br />
+                    【时间】{{ item.DepartureTime }}<br />
+                    【票价】{{ item.TotalAmount }}元<br />
+                </p>
+            </div>
+            <div class="weui-cell__ft">
+            </div>
+        </a>
+        {{# }) }}
+    </script>
+    <script src="~/Content/js/memberTicket.js"></script>
+    <script>
+        $(function () {
+            //$("#btnLoadMore").on("click", function () {
+            //    $.toast("异步加载数据....", "text");
+            //});
+            GetMyOrder();
+        });
+    </script>
+}

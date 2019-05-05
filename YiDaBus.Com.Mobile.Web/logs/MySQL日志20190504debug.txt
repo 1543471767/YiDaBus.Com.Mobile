@@ -1,0 +1,101 @@
+2019-05-04 18:48:35
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area1 	
+Parameters:
+?Area1[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:50:39
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area1 	
+Parameters:
+?Area1[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:50:42
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area2 	
+Parameters:
+?Area2[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:50:44
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area3 	
+Parameters:
+?Area3[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:53:17
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = '上海' 	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:54:42
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area4 	
+Parameters:
+?Area4[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:54:56
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area5 	
+Parameters:
+?Area5[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:55:00
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area6 	
+Parameters:
+?Area6[String] = 上海
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:55:29
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = '上海'	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:55:31
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = '上海'	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:55:38
+Text:	 SELECT   * FROM `TimeEndConfig	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:55:50
+Text:	 SELECT   * FROM TimeEndConfig 	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:56:04
+Text:	 SELECT   * FROM TimeEndConfig WHERE `TimeEndConfig`.`Area` = '上海' 	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:56:11
+Text:	 SELECT   * FROM TimeEndConfig	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:56:13
+Text:	 SELECT   * FROM TimeEndConfig	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:56:24
+Text:	 SELECT   * FROM TimeEndConfig  WHERE `TimeEndConfig`.`Area` = '上海' 	
+
+
+-----------------------------------------------------------------------------
+2019-05-04 18:58:54
+Text:	 SELECT   * FROM `TimeEndConfig`  WHERE `TimeEndConfig`.`Area` = ?Area7 	
+Parameters:
+?Area7[String] = 上海
+
+
+-----------------------------------------------------------------------------

@@ -1,0 +1,838 @@
+	
+<!--=======================Index表单START====================================-->
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<script>
+    var modulelUrl = "";//区域的路径
+    $(function () {
+        gridList();
+    })
+    var $gridList;
+    function gridList() {
+        $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: modulelUrl + "GetGridJson",
+            height: $(window).height() - 128,
+            colModel: [
+						{ label: "主键", name: "Id", hidden: true, key: true },
+							{ label: '订单号', name: 'OrderNo', width: 150, align: 'left' },
+							{ label: '用户ID', name: 'UserId', width: 150, align: 'left' },
+							{ label: '车牌号', name: 'CarNumber', width: 150, align: 'left' },
+							{ label: '出发地', name: 'FromPosition', width: 150, align: 'left' },
+							{ label: '终点地', name: 'ToPosition', width: 150, align: 'left' },
+							{ label: '座位（以逗号隔开，@Z@作为标识）', name: 'SeatIds', width: 150, align: 'left' },
+							{ label: '发车时间', name: 'DepartureTime', width: 150, align: 'left' },
+							{ label: '订单总金额（单位元）', name: 'TotalAmount', width: 150, align: 'left' },
+							{ label: '用户账号', name: 'UserName', width: 150, align: 'left' },
+							{ label: '用户姓名', name: 'UserNickName', width: 150, align: 'left' },
+							{ label: '手机号', name: 'Mobile', width: 150, align: 'left' },
+							{ label: '是否单程（0：否；1：是）', name: 'IsOneWay', width: 150, align: 'left' },
+							{ label: '是否接送（0：否；1：是）', name: 'IsShuttle', width: 150, align: 'left' },
+							{ label: '接的地点', name: 'MeetPosition', width: 150, align: 'left' },
+							{ label: '送的地点', name: 'SendPosition', width: 150, align: 'left' },
+							{ label: '创建时间', name: 'CreateTime', width: 150, align: 'left' },
+							{ label: '更新时间', name: 'UpdateTime', width: 150, align: 'left' },
+							{ label: '支付状态（0：待支付；1：支付成功；2：支付失败；）', name: 'PayState', width: 150, align: 'left' },
+							{ label: '星期几', name: 'Week', width: 150, align: 'left' },
+							{ label: '区域', name: 'Area', width: 150, align: 'left' },
+							{ label: '是否已删除（0：未删除；1：已删除；）', name: 'IsDel', width: 150, align: 'left' },
+							{ label: '座位描述', name: 'SeatTexts', width: 150, align: 'left' },
+							{ label: '星期几中文描述', name: 'WeekTextCn', width: 150, align: 'left' },
+							{ label: '用户微信昵称', name: 'WxNickName', width: 150, align: 'left' },
+			],
+            pager: "#gridPager",
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "新增",
+            url: modulelUrl + "Form",
+            width: "800px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "修改",
+            url: modulelUrl + "Form?keyValue=" + keyValue,
+            width: "800px",
+            height: "600px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
+    function btn_delete() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.deleteForm({
+            url: modulelUrl + "DeleteForm",
+            param: { keyValue: keyValue },
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+    function btn_details() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (keyValue == undefined) {
+            $.modalAlert("请选择要操作的行！", 2);
+            return;
+        }
+        $.modalOpen({
+            id: "Details",
+            title: "查看",
+            url: modulelUrl + "Form?action=Details&keyValue=" + keyValue,
+            width: "800px",
+            height: "600px",
+            btn: null,
+        });
+    }
+</script>
+<style>
+    dl {
+        margin: 5px !important;
+    }
+
+    a:hover {
+        color: #ff6a00;
+    }
+
+    #SearchForm table tr {
+    }
+
+        #SearchForm table tr td {
+            padding-right: 10px;
+        }
+</style>
+<div class="topPanel" style="height: 100px;">
+  <div class="search" style="float: inherit;">
+	<form id="SearchForm">
+            <table>
+                <tr>
+								<!--订单主键ID-->
+					<td>
+                        <div class="input-group">
+                            <strong>订单主键ID：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="Id" name="Id" type="text" class="form-control" placeholder="订单主键ID" >
+                        </div>
+                    </td>
+								<!--订单号-->
+					<td>
+                        <div class="input-group">
+                            <strong>订单号：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="OrderNo" name="OrderNo" type="text" class="form-control" placeholder="订单号" >
+                        </div>
+                    </td>
+								<!--用户ID-->
+					<td>
+                        <div class="input-group">
+                            <strong>用户ID：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserId" name="UserId" type="text" class="form-control" placeholder="用户ID" >
+                        </div>
+                    </td>
+								<!--车牌号-->
+					<td>
+                        <div class="input-group">
+                            <strong>车牌号：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="CarNumber" name="CarNumber" type="text" class="form-control" placeholder="车牌号" >
+                        </div>
+                    </td>
+								<!--出发地-->
+					<td>
+                        <div class="input-group">
+                            <strong>出发地：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="FromPosition" name="FromPosition" type="text" class="form-control" placeholder="出发地" >
+                        </div>
+                    </td>
+								<!--终点地-->
+					<td>
+                        <div class="input-group">
+                            <strong>终点地：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="ToPosition" name="ToPosition" type="text" class="form-control" placeholder="终点地" >
+                        </div>
+                    </td>
+								<!--座位（以逗号隔开，@Z@作为标识）-->
+					<td>
+                        <div class="input-group">
+                            <strong>座位（以逗号隔开，@Z@作为标识）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="SeatIds" name="SeatIds" type="text" class="form-control" placeholder="座位（以逗号隔开，@Z@作为标识）" >
+                        </div>
+                    </td>
+								<!--发车时间-->
+					<td>
+                        <div class="input-group">
+                            <strong>发车时间：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="DepartureTime" name="DepartureTime" type="text" class="form-control" placeholder="发车时间" >
+                        </div>
+                    </td>
+								<!--订单总金额（单位元）-->
+					<td>
+                        <div class="input-group">
+                            <strong>订单总金额（单位元）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="TotalAmount" name="TotalAmount" type="text" class="form-control" placeholder="订单总金额（单位元）" >
+                        </div>
+                    </td>
+								<!--用户账号-->
+					<td>
+                        <div class="input-group">
+                            <strong>用户账号：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserName" name="UserName" type="text" class="form-control" placeholder="用户账号" >
+                        </div>
+                    </td>
+								<!--用户姓名-->
+					<td>
+                        <div class="input-group">
+                            <strong>用户姓名：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UserNickName" name="UserNickName" type="text" class="form-control" placeholder="用户姓名" >
+                        </div>
+                    </td>
+								<!--手机号-->
+					<td>
+                        <div class="input-group">
+                            <strong>手机号：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="Mobile" name="Mobile" type="text" class="form-control" placeholder="手机号" >
+                        </div>
+                    </td>
+								<!--是否单程（0：否；1：是）-->
+					<td>
+                        <div class="input-group">
+                            <strong>是否单程（0：否；1：是）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="IsOneWay" name="IsOneWay" type="text" class="form-control" placeholder="是否单程（0：否；1：是）" >
+                        </div>
+                    </td>
+								<!--是否接送（0：否；1：是）-->
+					<td>
+                        <div class="input-group">
+                            <strong>是否接送（0：否；1：是）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="IsShuttle" name="IsShuttle" type="text" class="form-control" placeholder="是否接送（0：否；1：是）" >
+                        </div>
+                    </td>
+								<!--接的地点-->
+					<td>
+                        <div class="input-group">
+                            <strong>接的地点：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="MeetPosition" name="MeetPosition" type="text" class="form-control" placeholder="接的地点" >
+                        </div>
+                    </td>
+								<!--送的地点-->
+					<td>
+                        <div class="input-group">
+                            <strong>送的地点：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="SendPosition" name="SendPosition" type="text" class="form-control" placeholder="送的地点" >
+                        </div>
+                    </td>
+								<!--创建时间-->
+					<td>
+                        <div class="input-group">
+                            <strong>创建时间：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="CreateTime" name="CreateTime" type="text" class="form-control" placeholder="创建时间" >
+                        </div>
+                    </td>
+								<!--更新时间-->
+					<td>
+                        <div class="input-group">
+                            <strong>更新时间：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="UpdateTime" name="UpdateTime" type="text" class="form-control" placeholder="更新时间" >
+                        </div>
+                    </td>
+								<!--支付状态（0：待支付；1：支付成功；2：支付失败；）-->
+					<td>
+                        <div class="input-group">
+                            <strong>支付状态（0：待支付；1：支付成功；2：支付失败；）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="PayState" name="PayState" type="text" class="form-control" placeholder="支付状态（0：待支付；1：支付成功；2：支付失败；）" >
+                        </div>
+                    </td>
+								<!--星期几-->
+					<td>
+                        <div class="input-group">
+                            <strong>星期几：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="Week" name="Week" type="text" class="form-control" placeholder="星期几" >
+                        </div>
+                    </td>
+								<!--区域-->
+					<td>
+                        <div class="input-group">
+                            <strong>区域：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="Area" name="Area" type="text" class="form-control" placeholder="区域" >
+                        </div>
+                    </td>
+								<!--是否已删除（0：未删除；1：已删除；）-->
+					<td>
+                        <div class="input-group">
+                            <strong>是否已删除（0：未删除；1：已删除；）：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="IsDel" name="IsDel" type="text" class="form-control" placeholder="是否已删除（0：未删除；1：已删除；）" >
+                        </div>
+                    </td>
+								<!--座位描述-->
+					<td>
+                        <div class="input-group">
+                            <strong>座位描述：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="SeatTexts" name="SeatTexts" type="text" class="form-control" placeholder="座位描述" >
+                        </div>
+                    </td>
+								<!--星期几中文描述-->
+					<td>
+                        <div class="input-group">
+                            <strong>星期几中文描述：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="WeekTextCn" name="WeekTextCn" type="text" class="form-control" placeholder="星期几中文描述" >
+                        </div>
+                    </td>
+								<!--用户微信昵称-->
+					<td>
+                        <div class="input-group">
+                            <strong>用户微信昵称：</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input id="WxNickName" name="WxNickName" type="text" class="form-control" placeholder="用户微信昵称" >
+                        </div>
+                    </td>
+									<td>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button id="btn_search" type="button" class="btn  btn-primary" onclick="SearchHandler()"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </td>
+                   <td>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn  btn-primary" onclick="ShowMoreSearchHandler(this)" style="padding:0px 10px;"><i class="fa fa-expand"></i>更多</button>
+                            </span>
+                        </div>
+                    </td>
+					<td>
+						<div class="btn-group">
+							<a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+						</div>
+					</td>
+                </tr>
+            </table>
+			<table id="TbMoreSeach" style="display:none;">
+				<tr>
+				</tr>
+			</table>
+        </form>
+    </div>
+    <div id="toolbar" style="padding:0px 10px;">
+		<table>
+			<tr>
+				<td>
+					<a id="NF-edit" class="btn btn-default" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>修改</a>
+				</td>
+				<td>
+					<a id="NF-delete" class="btn btn-default" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+				</td>
+				<td>
+					<a id="NF-Details" class="btn btn-default" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>查看</a>
+				</td>
+			</tr>
+		</table>
+		<script>$('#toolbar').authorizeButton()</script>
+	</div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+ <!--=======================Index表单END====================================-->
+  <!--=======================FORM表单START====================================-->
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var modulelUrl = "";//区域的路径
+    var keyValue = $.request("keyValue");
+    var action = $.request("action");
+    $(function () {
+        initControl();
+        if (!!keyValue) {
+            if (action == "Details") {
+                $.ajax({
+                    url: modulelUrl + "GetFormJson",
+                    data: { keyValue: keyValue },
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        $("#form1").formSerialize(data);
+                        $("#form1").find('.form-control,input').attr('readonly', 'readonly');
+                        $("#form1").find('select').attr('disabled', 'true');
+                        $("#form1").find('div.ckbox label').attr('for', '');
+                        $('.upload-path').each(function (index, obj) {
+                            $(obj).after("<img height='100px' width='100px' src='" + $(obj).val() + "'></img>").hide();
+                        });
+                    }
+                });
+            } else {
+                $.ajax({
+                    url: modulelUrl + "GetFormJson",
+                    data: { keyValue: keyValue },
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        $("#form1").formSerialize(data);
+                        $(".upload-img").InitUploader({ swf: "~/Content/js/webuploader/uploader.swf" });
+                    }
+                });
+            }
+        }else {
+            $(".upload-img").InitUploader({ swf: "~/Content/js/webuploader/uploader.swf" });
+        }
+    });
+    function initControl() {
+        
+    }
+    function submitForm() {
+        if (!$('#form1').formValid()) {
+            return false;
+        }
+        $.submitForm({
+            url: modulelUrl + "SubmitForm?keyValue=" + keyValue,
+            param: $("#form1").formSerialize(),
+            success: function () {
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+            }
+        })
+    }
+</script>
+<form id="form1">
+    <div style="padding-top: 20px; margin-right: 20px;">
+        <table class="form">
+                  <tr>
+					<th class="formTitle">订单主键ID</th>
+					<td class="formValue">
+				                    </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">订单号</th>
+					<td class="formValue">
+				   					<input id="OrderNo" name="OrderNo" type="text" class="form-control required" placeholder="请输入订单号" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">用户ID</th>
+					<td class="formValue">
+				   					<input id="UserId" name="UserId" type="text" class="form-control required" placeholder="请输入用户ID" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">车牌号</th>
+					<td class="formValue">
+				   					<input id="CarNumber" name="CarNumber" type="text" class="form-control required" placeholder="请输入车牌号" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">出发地</th>
+					<td class="formValue">
+				   					<input id="FromPosition" name="FromPosition" type="text" class="form-control required" placeholder="请输入出发地" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">终点地</th>
+					<td class="formValue">
+				   					<input id="ToPosition" name="ToPosition" type="text" class="form-control required" placeholder="请输入终点地" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">座位（以逗号隔开，@Z@作为标识）</th>
+					<td class="formValue">
+				   					<input id="SeatIds" name="SeatIds" type="text" class="form-control required" placeholder="请输入座位（以逗号隔开，@Z@作为标识）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">发车时间</th>
+					<td class="formValue">
+				   					<input id="DepartureTime" name="DepartureTime" type="text" class="form-control required" placeholder="请输入发车时间" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">订单总金额（单位元）</th>
+					<td class="formValue">
+				   					<input id="TotalAmount" name="TotalAmount" type="text" class="form-control required" placeholder="请输入订单总金额（单位元）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">用户账号</th>
+					<td class="formValue">
+				   					<input id="UserName" name="UserName" type="text" class="form-control required" placeholder="请输入用户账号" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">用户姓名</th>
+					<td class="formValue">
+				   					<input id="UserNickName" name="UserNickName" type="text" class="form-control required" placeholder="请输入用户姓名" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">手机号</th>
+					<td class="formValue">
+				   					<input id="Mobile" name="Mobile" type="text" class="form-control required" placeholder="请输入手机号" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">是否单程（0：否；1：是）</th>
+					<td class="formValue">
+				   					<input id="IsOneWay" name="IsOneWay" type="text" class="form-control required" placeholder="请输入是否单程（0：否；1：是）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">是否接送（0：否；1：是）</th>
+					<td class="formValue">
+				   					<input id="IsShuttle" name="IsShuttle" type="text" class="form-control required" placeholder="请输入是否接送（0：否；1：是）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">接的地点</th>
+					<td class="formValue">
+				   					<input id="MeetPosition" name="MeetPosition" type="text" class="form-control required" placeholder="请输入接的地点" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">送的地点</th>
+					<td class="formValue">
+				   					<input id="SendPosition" name="SendPosition" type="text" class="form-control required" placeholder="请输入送的地点" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">创建时间</th>
+					<td class="formValue">
+				   					<input id="CreateTime" name="CreateTime" type="text" class="form-control required" placeholder="请输入创建时间" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">更新时间</th>
+					<td class="formValue">
+				   					<input id="UpdateTime" name="UpdateTime" type="text" class="form-control required" placeholder="请输入更新时间" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">支付状态（0：待支付；1：支付成功；2：支付失败；）</th>
+					<td class="formValue">
+				   					<input id="PayState" name="PayState" type="text" class="form-control required" placeholder="请输入支付状态（0：待支付；1：支付成功；2：支付失败；）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">星期几</th>
+					<td class="formValue">
+				   					<input id="Week" name="Week" type="text" class="form-control required" placeholder="请输入星期几" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">区域</th>
+					<td class="formValue">
+				   					<input id="Area" name="Area" type="text" class="form-control required" placeholder="请输入区域" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">是否已删除（0：未删除；1：已删除；）</th>
+					<td class="formValue">
+				   					<input id="IsDel" name="IsDel" type="text" class="form-control required" placeholder="请输入是否已删除（0：未删除；1：已删除；）" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">座位描述</th>
+					<td class="formValue">
+				   					<input id="SeatTexts" name="SeatTexts" type="text" class="form-control required" placeholder="请输入座位描述" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">星期几中文描述</th>
+					<td class="formValue">
+				   					<input id="WeekTextCn" name="WeekTextCn" type="text" class="form-control required" placeholder="请输入星期几中文描述" />
+                           </td>
+    </tr>
+                   <tr>
+					<th class="formTitle">用户微信昵称</th>
+					<td class="formValue">
+				   					<input id="WxNickName" name="WxNickName" type="text" class="form-control required" placeholder="请输入用户微信昵称" />
+                           </td>
+    </tr>
+         </table>
+    </div>
+</form>
+ <!--=======================FORM表单END====================================-->
+ <!--=======================Detail表单START====================================-->
+ @{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<script>
+    var modulelUrl = "";//区域的路径
+    var userId = $.request("userId");
+    $(function () {
+		 $('.wrapper').height($(window).height() - 60);
+        $('.tab-content').height($(window).height() - 120);
+        initControl();
+        if (!!userId) {
+            $.ajax({
+                url: modulelUrl + "GetFormJson",
+                data: { userId: userId },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#form1").formSerialize(data);
+                    $("#form1").find('.form-control,input').attr('readonly', 'readonly');
+                    $("#form1").find('select').attr('disabled', 'true');
+                    $("#form1").find('div.ckbox label').attr('for', '');
+                    $('.upload-path').each(function (index, obj) {
+                        $(obj).after("<img height='100px' width='100px' src='" + $(obj).val() + "'></img>").hide();
+                    });
+                }
+            });
+        }
+    });
+    function initControl() {
+       
+    }
+    
+</script>
+<style>
+    input, select {
+        width: 400px !important;
+        border-width: 0px !important;
+		appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+</style>
+<div>
+    <a class="btn btn-primary" href="javascript:void(0);" onclick="history.go(-1)"><i class="fa fa-backward" style="margin-right:5px;"></i>返回</a>
+</div>
+<form id="form1" >
+<div class="wrapper" style="overflow:hidden;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#a" data-toggle="tab" aria-expanded="true">基本信息</a></li>
+    </ul>
+    <div class="tab-content" style="padding: 5px;overflow:auto;">
+        <div id="a" class="tab-pane active" style="padding: 15px;">
+            <ul class="pop-list">
+							                    <li>
+				   <label>订单主键ID</label>
+				   				 </li>
+				  				                    <li>
+				   <label>订单号</label>
+				   					<input id="OrderNo" name="OrderNo" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>用户ID</label>
+				   					<input id="UserId" name="UserId" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>车牌号</label>
+				   					<input id="CarNumber" name="CarNumber" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>出发地</label>
+				   					<input id="FromPosition" name="FromPosition" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>终点地</label>
+				   					<input id="ToPosition" name="ToPosition" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>座位（以逗号隔开，@Z@作为标识）</label>
+				   					<input id="SeatIds" name="SeatIds" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>发车时间</label>
+				   					<input id="DepartureTime" name="DepartureTime" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>订单总金额（单位元）</label>
+				   					<input id="TotalAmount" name="TotalAmount" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>用户账号</label>
+				   					<input id="UserName" name="UserName" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>用户姓名</label>
+				   					<input id="UserNickName" name="UserNickName" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>手机号</label>
+				   					<input id="Mobile" name="Mobile" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>是否单程（0：否；1：是）</label>
+				   					<input id="IsOneWay" name="IsOneWay" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>是否接送（0：否；1：是）</label>
+				   					<input id="IsShuttle" name="IsShuttle" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>接的地点</label>
+				   					<input id="MeetPosition" name="MeetPosition" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>送的地点</label>
+				   					<input id="SendPosition" name="SendPosition" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>创建时间</label>
+				   					<input id="CreateTime" name="CreateTime" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>更新时间</label>
+				   					<input id="UpdateTime" name="UpdateTime" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>支付状态（0：待支付；1：支付成功；2：支付失败；）</label>
+				   					<input id="PayState" name="PayState" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>星期几</label>
+				   					<input id="Week" name="Week" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>区域</label>
+				   					<input id="Area" name="Area" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>是否已删除（0：未删除；1：已删除；）</label>
+				   					<input id="IsDel" name="IsDel" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>座位描述</label>
+				   					<input id="SeatTexts" name="SeatTexts" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>星期几中文描述</label>
+				   					<input id="WeekTextCn" name="WeekTextCn" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				  				                    <li>
+				   <label>用户微信昵称</label>
+				   					<input id="WxNickName" name="WxNickName" type="text" class="form-control" placeholder="暂未填写" />
+          				 </li>
+				   <li>
+ <div style="padding-left: 115px;">
+                            <a class="btn btn-primary" href="javascript:void(0);" onclick="history.go(-1)"><i class="fa fa-backward" style="margin-right:5px;"></i>返回</a>
+                        </div>
+						</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</form>
+ <!--=======================Detail表单END====================================-->
