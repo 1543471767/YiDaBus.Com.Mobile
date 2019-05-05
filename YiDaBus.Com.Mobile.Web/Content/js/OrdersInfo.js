@@ -122,7 +122,7 @@ function InitForm() {
         })
 
         //是否接送
-        form.on('switch(SwitchShuttle)', function (data) {
+        form.on('switch(SwitchShuttle)', function (data) { 
             var flag = data.elem.checked;
             var isshuttle = flag ? 1 : 0;
             $("#isShuttle").val(isshuttle);
